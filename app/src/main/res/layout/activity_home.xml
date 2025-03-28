@@ -47,7 +47,7 @@
         android:layout_margin="50dp"
         android:gravity="center"
         android:text="Enter Text"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
