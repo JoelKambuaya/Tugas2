@@ -3,44 +3,27 @@ package com.example.tugas2
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-
-class MainActivity : AppCompatActivity() {
-
-
+class menutgs : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_menutgs)
 
+        val btntgs2 = findViewById<Button>(R.id.btntgs2)
+        val btntgs3 = findViewById<Button>(R.id.btntgs3)
 
-        val forgotPass = findViewById<TextView>(R.id.forgotpass)
-        val signup1 = findViewById<TextView>(R.id.signup1)
-        val loginbtn = findViewById<Button>(R.id.loginbtn)
-
-
-        loginbtn.setOnClickListener {
-
-                val intent = Intent(this, menutgs::class.java)
-                startActivity(intent)
-                finish()
-        }
-
-
-        forgotPass.setOnClickListener {
-
-            val intent = Intent(this, Forgot_pass::class.java)
+        btntgs2.setOnClickListener {
+            val intent = Intent (this ,home::class.java)
             startActivity(intent)
         }
 
-
-        signup1.setOnClickListener {
-            val intent = Intent(this, signup::class.java)
+        btntgs3.setOnClickListener {
+            val intent = Intent (this ,home::class.java)
             startActivity(intent)
         }
 
