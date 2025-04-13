@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class MyAdapter(private val namalist : ArrayList<ItemData>):
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
+    var onItemClick: ((ItemData) -> Unit)? = null
+
     class MyViewHolder(itemData: View) : RecyclerView.ViewHolder(itemData) {
 
         val gambar: ImageView = itemData.findViewById(R.id.imageView2)
@@ -26,10 +28,14 @@ class MyAdapter(private val namalist : ArrayList<ItemData>):
     override fun getItemCount(): Int = namalist.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = namalist[position]
-        holder.gambar.setImageResource(currentItem.gambar)
-        holder.nama.text = currentItem.nama
-        holder.developer.text = currentItem.developer
+        val game = namalist[position]
+        holder.gambar.setImageResource(game.gambar)
+        holder.nama.text = game.nama
+        holder.developer.text = game.developer
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(game)
+        }
     }
 }
 
