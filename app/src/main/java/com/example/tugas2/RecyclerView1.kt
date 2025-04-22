@@ -3,12 +3,16 @@ package com.example.tugas2
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class RecyclerView1 : AppCompatActivity() {
     private lateinit var gameRecyclerView: RecyclerView
@@ -91,16 +95,58 @@ class RecyclerView1 : AppCompatActivity() {
         gameRecyclerView.setHasFixedSize(true)
         gameAdapter = MyAdapter(listgame)
         gameRecyclerView.adapter = gameAdapter
+
         gameAdapter.onItemClick ={
             val intent = Intent(this , DetailActivity::class.java)
             intent.putExtra("game",it)
             startActivity(intent)
         }
 
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId){
+                R.id.navigation_home -> {
+                    Toast.makeText(this,"Home click",Toast.LENGTH_SHORT).show()
+                    true}
+                R.id.navigation_search -> {
+                    Toast.makeText(this,"Search click",Toast.LENGTH_SHORT).show()
+                    true }
+                R.id.navigation_notifications -> {
+                    Toast.makeText(this,"Notifications click",Toast.LENGTH_SHORT).show()
+                    true }
+                else -> false
+            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_option, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                Toast.makeText(this,"logout click",Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            R.id.setting -> {
+                Toast.makeText(this,"Setting click",Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            R.id.profile -> {
+                Toast.makeText(this,"Profile click",Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
