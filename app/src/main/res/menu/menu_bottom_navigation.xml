@@ -12,6 +12,6 @@
         android:icon="@drawable/ic_search"/>
     <item
         android:id="@+id/navigation_notifications"
-        android:title="Item"
+        android:title="Notifikasi"
         android:icon="@drawable/ic_notification"/>
 </menu>

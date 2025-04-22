@@ -17,6 +17,7 @@ class menutgs : AppCompatActivity() {
 
         val btntgs2 = findViewById<Button>(R.id.btntgs2)
         val btntgs3 = findViewById<Button>(R.id.btntgs3)
+        val btntgs4 = findViewById<Button>(R.id.btntgs4)
 
         btntgs2.setOnClickListener {
             val intent = Intent (this ,home::class.java)
@@ -27,6 +28,12 @@ class menutgs : AppCompatActivity() {
             val intent = Intent (this, RecyclerView1::class.java)
             startActivity(intent)
         }
+
+        btntgs4.setOnClickListener {
+            val intent = Intent (this, Profile::class.java)
+            startActivity(intent)
+        }
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
