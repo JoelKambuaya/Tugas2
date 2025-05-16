@@ -19,8 +19,8 @@ class ForgotPass : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_forgot_pass)
         binding = ActivityForgotPassBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.sendbtn.setOnClickListener {
             val email : String = binding.email.text.toString().trim()
