@@ -31,7 +31,7 @@
             android:name=".signup"
             android:exported="false" />
         <activity
-            android:name=".Forgot_pass"
+            android:name=".ForgotPass"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

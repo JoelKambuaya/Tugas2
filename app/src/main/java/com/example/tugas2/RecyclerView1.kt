@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class RecyclerView1 : AppCompatActivity() {
     private lateinit var gameRecyclerView: RecyclerView
@@ -25,6 +26,10 @@ class RecyclerView1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_recycler_view1)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+
         gameRecyclerView = findViewById(R.id.gameRV)
 
         listgame = ArrayList()
@@ -124,6 +129,7 @@ class RecyclerView1 : AppCompatActivity() {
                     Toast.makeText(this, "Home click", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, Profile::class.java))
                     true
+
                 }
 
                 R.id.navigation_search -> {
@@ -153,8 +159,12 @@ class RecyclerView1 : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
                 Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, MainActivity::class.java))
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
                 return true
             }
             R.id.setting -> {
